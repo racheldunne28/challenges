@@ -5,6 +5,7 @@
 
 
 def countTriplets(arr, r):
-    triplets_list = [(n, r * n, r * r * n) for n in arr if r * n in arr and r * r * n in arr]
-    triplets_set = set(triplets_list)
-    return len(triplets_set)
+    triplets_list_unique = [(n, r * n, r * r * n) for n in arr if r * n in arr and r * r * n in arr]
+    extra_elements = [t for t in triplets_list_unique for i in range((arr.count(t[1]) - 1) + (arr.count(t[2]) - 1))]
+    triplets_list = triplets_list_unique + extra_elements
+    return len(triplets_list)
